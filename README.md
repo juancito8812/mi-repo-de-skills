@@ -7,7 +7,7 @@ Skills de Superpowers + Ponytail + skills personalizadas para proyectos de desar
 ### Superpowers Skills (`.agents/skills/` — 16 skills)
 brainstorming, dispatching-parallel-agents, executing-plans, find-skills, finishing-a-development-branch, ponytail, receiving-code-review, requesting-code-review, subagent-driven-development, systematic-debugging, test-driven-development, using-git-worktrees, using-superpowers, verification-before-completion, writing-plans, writing-skills
 
-### Custom Skills (`skills/` — 7 skills)
+### Custom Skills (`skills/` — 9 skills)
 
 | Skill | Versión | Propósito |
 |-------|---------|-----------|
@@ -15,8 +15,10 @@ brainstorming, dispatching-parallel-agents, executing-plans, find-skills, finish
 | changelog-generator | 1.1.0 | Generar changelogs desde commits |
 | error-handling-patterns | 1.1.0 | Patrones multi-lenguaje de manejo de errores |
 | frontend-design | 1.1.0 | Diseño visual distintivo para UI |
+| graphql-api-design | 1.0.0 | Diseño de APIs GraphQL con schema, DataLoader y Relay |
 | interface-design | 1.1.0 | Diseño craft-first de interfaces producto |
 | postgresql-table-design | 1.1.0 | Diseño de schemas PostgreSQL |
+| restful-api-design | 1.0.0 | Diseño de APIs REST con naming, HTTP y errores |
 | vercel-react-best-practices | 1.1.0 | Optimización React/Next.js |
 
 Todas las skills incluyen:
