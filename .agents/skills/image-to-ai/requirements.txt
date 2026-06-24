@@ -1,0 +1,10 @@
+# Core dependencies
+Pillow>=10.0.0
+numpy>=1.24.0
+
+# Optional: PyTorch for tensor framework support
+# Uncomment to enable PyTorch tensors
+# torch>=2.0.0
+
+# Optional: OCR support
+pytesseract>=0.3.10
