@@ -18,5 +18,8 @@ pytorch = ["torch>=2.0.0"]
 requires = ["setuptools>=68.0"]
 build-backend = "setuptools.build_meta"
 
+[project.scripts]
+mcp-image-to-ai = "mcp_servers.image_to_ai:main"
+
 [tool.mcp]
 server = "mcp_servers.image_to_ai:main"

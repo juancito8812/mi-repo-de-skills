@@ -2,14 +2,23 @@
 name: vercel-react-best-practices
 description: React and Next.js performance optimization guidelines from Vercel Engineering. Use when writing, reviewing, or refactoring React/Next.js code to ensure optimal performance patterns. Triggers on tasks involving React components, Next.js pages, data fetching, bundle optimization, or performance improvements.
 license: MIT
+version: "1.1.0"
 metadata:
   author: vercel
-  version: "1.0.0"
+  source: https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices
 ---
 
 # Vercel React Best Practices
 
-Comprehensive performance optimization guide for React and Next.js applications, maintained by Vercel. Contains 70 rules across 8 categories, prioritized by impact to guide automated refactoring and code generation.
+## Checklist
+
+- [ ] Waterfall requests identified and parallelized
+- [ ] Bundle size checked: no barrel imports, dynamic imports for heavy components
+- [ ] Server components used where possible (no client-side fetching if server can do it)
+- [ ] Re-renders optimized: memo, useMemo, useCallback where measured benefit
+- [ ] No inline component definitions
+- [ ] Suspense boundaries for async content
+- [ ] Data serialized minimally to client
 
 ## When to Apply
 
@@ -74,3 +83,19 @@ Reference these guidelines when:
 ## How to Use
 
 For the complete guide with all 70 rules expanded, see the original source at `https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices`
+
+## Performance Audit Steps
+
+1. **Check waterfalls**: `Promise.all()` for parallel fetches, Suspense boundaries
+2. **Check bundle**: dynamic imports for heavy libs, no barrel imports
+3. **Check components**: no inline definitions, proper memo usage
+4. **Check rendering**: `content-visibility` for lists, `startTransition` for non-urgent
+5. **Check data flow**: minimize client data, cache server responses
+
+## Exit Criteria
+
+- [ ] No critical waterfalls identified
+- [ ] Bundle size optimized (dynamic imports, no barrel files)
+- [ ] Server/client split appropriate
+- [ ] No unnecessary re-renders
+- [ ] Performance measured before/after

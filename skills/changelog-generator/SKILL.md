@@ -1,13 +1,23 @@
 ---
 name: changelog-generator
-description: Automatically creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes. Turns hours of manual changelog writing into minutes of automated generation.
+description: Automatically creates user-facing changelogs from git commits by analyzing commit history, categorizing changes, and transforming technical commits into clear, customer-friendly release notes.
+version: "1.1.0"
+license: MIT
+metadata:
+  author: juancito8812
+  commit-format: Conventional Commits (feat, fix, chore, docs, refactor, test, style, perf, ci, build, revert)
 ---
 
 # Changelog Generator
 
-This skill transforms technical git commits into polished, user-friendly changelogs that your customers and users will actually understand and appreciate.
+## Checklist
 
-## When to Use This Skill
+- [ ] Git repo with conventional commits
+- [ ] Tag or reference point identified (last release tag, date range, or commit hash)
+- [ ] Output format determined (markdown, plain text, app store format)
+- [ ] Internal commits filtered out (refactor, test, chore, ci)
+
+## When to Use
 
 - Preparing release notes for a new version
 - Creating weekly or monthly product update summaries
@@ -17,70 +27,79 @@ This skill transforms technical git commits into polished, user-friendly changel
 - Creating internal release documentation
 - Maintaining a public changelog/product updates page
 
-## What This Skill Does
+## Execution
 
-1. **Scans Git History**: Analyzes commits from a specific time period or between versions
-2. **Categorizes Changes**: Groups commits into logical categories (features, improvements, bug fixes, breaking changes, security)
-3. **Translates Technical → User-Friendly**: Converts developer commits into customer language
-4. **Formats Professionally**: Creates clean, structured changelog entries
-5. **Filters Noise**: Excludes internal commits (refactoring, tests, etc.)
-6. **Follows Best Practices**: Applies changelog guidelines and your brand voice
+### 1. Get commits since last tag
 
-## How to Use
-
-### Basic Usage
-
-From your project repository:
-
-```
-Create a changelog from commits since last release
+```bash
+# From repo root
+LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+if [ -n "$LAST_TAG" ]; then
+  git log "$LAST_TAG..HEAD" --oneline --no-decorate
+else
+  git log --oneline --no-decorate -30
+fi
 ```
 
-```
-Generate changelog for all commits from the past week
-```
+### 2. Categorize by conventional commit type
 
-```
-Create release notes for version 2.5.0
-```
+| Prefix | Category |
+|--------|----------|
+| `feat` | New Features |
+| `fix` | Bug Fixes |
+| `perf` | Performance |
+| `docs` | Documentation |
+| `refactor` | Internal Changes |
+| `test` | (filter out) |
+| `chore` | (filter out) |
+| `ci` | (filter out) |
+| `BREAKING` / `!` | Breaking Changes |
 
-### With Specific Date Range
+### 3. Format output
 
-```
-Create a changelog for all commits between March 1 and March 15
+```markdown
+# v{version}
+
+## ✨ New Features
+- {user-friendly description of feat commits}
+
+## 🐛 Fixes
+- {user-friendly description of fix commits}
+
+## ⚡ Improvements
+- {user-friendly description of perf/refactor commits}
 ```
 
 ## Example
 
-**User**: "Create a changelog for commits from the past 7 days"
+**Input commits:**
+```
+2a4d7ef feat: add dark mode toggle
+61f7fb3 fix: resolve crash on empty state
+22a9ba7 chore: update dependencies
+```
 
-**Output**:
+**Output:**
 ```markdown
-# Updates - Week of March 10, 2024
+# v1.1.0
 
 ## ✨ New Features
-
-- **Team Workspaces**: Create separate workspaces for different 
-  projects. Invite team members and keep everything organized.
-
-- **Keyboard Shortcuts**: Press ? to see all available shortcuts. 
-  Navigate faster without touching your mouse.
-
-## 🔧 Improvements
-
-- **Faster Sync**: Files now sync 2x faster across devices
-- **Better Search**: Search now includes file contents, not just titles
+- **Dark Mode**: Toggle between light and dark themes in settings
 
 ## 🐛 Fixes
-
-- Fixed issue where large images wouldn't upload
-- Resolved timezone confusion in scheduled posts
-- Corrected notification badge count
+- Fixed app crash when no data is available
 ```
 
 ## Tips
 
 - Run from your git repository root
 - Specify date ranges for focused changelogs
-- Review and adjust the generated changelog before publishing
-- Save output directly to CHANGELOG.md
+- Review and adjust before publishing
+- Translate technical details into user benefits
+
+## Exit Criteria
+
+- [ ] Commits categorized correctly
+- [ ] Technical language translated to user-friendly terms
+- [ ] Internal commits filtered out
+- [ ] Output saved to CHANGELOG.md or release notes
