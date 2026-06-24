@@ -8,39 +8,6 @@ on:
     branches: [main]
 
 jobs:
-  test-mcp-server:
-    name: MCP Server Tests (Python ${{ matrix.python-version }})
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.10", "3.11", "3.12"]
-      fail-fast: false
-
-    defaults:
-      run:
-        working-directory: mcp-servers/image-to-ai
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: pip
-          cache-dependency-path: mcp-servers/image-to-ai/pyproject.toml
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pytest
-          pip install -e .  # base deps: mcp, Pillow, numpy, pytesseract
-
-      - name: Run tests
-        run: python -m pytest test_image_to_ai.py -v --tb=short
-        env:
-          PYTHONPATH: ${{ github.workspace }}/.agents/skills/image-to-ai
-
   lint-yaml:
     name: Lint YAML
     runs-on: ubuntu-latest

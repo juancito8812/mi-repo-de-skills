@@ -4,8 +4,8 @@ Skills de Superpowers + Ponytail + skills personalizadas para proyectos de desar
 
 ## Skills
 
-### Superpowers Skills (`.agents/skills/` — 16 skills)
-brainstorming, dispatching-parallel-agents, executing-plans, find-skills, finishing-a-development-branch, ponytail, receiving-code-review, requesting-code-review, subagent-driven-development, systematic-debugging, test-driven-development, using-git-worktrees, using-superpowers, verification-before-completion, writing-plans, writing-skills
+### Superpowers Skills (`.agents/skills/` — 17 skills)
+brainstorming, dispatching-parallel-agents, executing-plans, find-skills, finishing-a-development-branch, image-to-ai, ponytail, receiving-code-review, requesting-code-review, subagent-driven-development, systematic-debugging, test-driven-development, using-git-worktrees, using-superpowers, verification-before-completion, writing-plans, writing-skills
 
 ### Custom Skills (`skills/` — 9 skills)
 
