@@ -1,0 +1,17 @@
+[Unit]
+Description=Hermes Agent Gateway
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=juan
+WorkingDirectory=/home/juan
+ExecStart=/home/juan/.local/bin/hermes gateway run
+Restart=always
+RestartSec=10
+Environment=HOME=/home/juan
+Environment=PATH=/home/juan/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+[Install]
+WantedBy=multi-user.target
